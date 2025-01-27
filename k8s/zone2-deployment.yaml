@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zone2-deployment
+spec:
+  selector:
+    matchLabels:
+      app: zone2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zone2
+    spec:
+      containers:
+      - name: zone2
+        image: ayach2024/sdci:zone
+        ports:
+        - containerPort: 8080
+        env:
+        - name: REMOTE_IP
+          value: "gw-clusterip"
+        - name: REMOTE_PORT
+          value: "8080"
+        - name: REMOTE_NAME
+          value: "main-gw"
+        - name: GATEWAY_NAME
+          value: "GW2"
+        - name: DEVICE_NAME
+          value: "dev2" 
+        - name: DEVICE_PERIOD
+          value: "5000" 

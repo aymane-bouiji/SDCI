@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "express": "^4.21.2",
+    "request": "^2.88.2",
+    "systeminformation": "^5.25.11",
+    "yargs": "^17.7.2"
+  }
+}

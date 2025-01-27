@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zone1-deployment
+spec:
+  selector:
+    matchLabels:
+      app: zone1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zone1
+    spec:
+      containers:
+      - name: zone1
+        image: ayach2024/sdci:zone
+        ports:
+        - containerPort: 8080
+        env:
+        - name: REMOTE_IP
+          value: "gw-clusterip"
+        - name: REMOTE_PORT
+          value: "8080"
+        - name: REMOTE_NAME
+          value: "main-gw"
+        - name: GATEWAY_NAME
+          value: "GW1"
+        - name: DEVICE_NAME
+          value: "dev1" 
+        - name: DEVICE_PERIOD
+          value: "5000" 
+
+#docker run -it --env REMOTE_IP=172.17.0.6 --env REMOTE_PORT=8080 --env REMOTE_NAME=main-gw --env GATEWAY_NAME=GW1 --env DEVICE_NAME=dev1 --env DEVICE_PERIOD=2000 sdci:zone
+
+
+#sudo kubeadm init --apiserver-advertise-address 192.168.3.161 --control-plane-endpoint 192.168.3.161
